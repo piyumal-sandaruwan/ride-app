@@ -1,59 +1,429 @@
+
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width">
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <title>Create Account | Wild Rydes</title>
+    <meta name="description" content="Create your Wild Rydes account and start your next adventure.">
 
-        <link rel="stylesheet" href="css/font.css">
-        <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/index.css">
-        <link rel="stylesheet" href="/css/message.css">
-    </head>
-    <body>
-        <!--[if lt IE 7]>
-            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
-        <![endif]-->
+    <link rel="stylesheet" href="/css/font.css">
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/message.css">
+    <link rel="stylesheet" href="/css/dark-theme.css">
 
-        <div id="noCognitoMessage" class="configMessage" style="display: none;">
-            <div class="backdrop"></div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">No Cognito User Pool Configured</h3>
-                </div>
-                <div class="panel-body">
-                    <p>There is no user pool configured in <a href="/js/config.js">/js/config.js</a>. You'll configure this in Module 2 of the workshop.</p>
-                </div>
+    <style>
+        body.register-page {
+            min-height: 100vh;
+            background:
+                radial-gradient(
+                    circle at 15% 15%,
+                    rgba(59, 130, 246, 0.13),
+                    transparent 32%
+                ),
+                #0b1120;
+        }
+
+        .register-nav {
+            width: min(1120px, calc(100% - 40px));
+            min-height: 78px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .register-brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: #f8fafc;
+            font-size: 19px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .register-brand img {
+            width: 38px;
+            height: 38px;
+            object-fit: contain;
+        }
+
+        .register-home {
+            color: #cbd5e1;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .register-layout {
+            width: min(1040px, calc(100% - 32px));
+            min-height: calc(100vh - 110px);
+            margin: 0 auto;
+            padding: 36px 0 60px;
+            display: grid;
+            grid-template-columns: 1fr 440px;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .register-intro {
+            padding: 20px 0;
+        }
+
+        .register-eyebrow {
+            display: inline-block;
+            padding: 7px 12px;
+            margin-bottom: 22px;
+            color: #93c5fd;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(96, 165, 250, 0.22);
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.1px;
+            text-transform: uppercase;
+        }
+
+        .register-intro h1 {
+            margin: 0 0 20px;
+            color: #f8fafc;
+            font-size: clamp(36px, 5vw, 58px);
+            line-height: 1.12;
+            letter-spacing: -2px;
+        }
+
+        .register-intro h1 span {
+            color: #60a5fa;
+        }
+
+        .register-intro > p {
+            max-width: 440px;
+            color: #94a3b8;
+            font-size: 16px;
+            line-height: 1.9;
+        }
+
+        .register-benefits {
+            display: grid;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .register-benefit {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #cbd5e1;
+            font-size: 14px;
+        }
+
+        .benefit-check {
+            width: 28px;
+            height: 28px;
+            display: grid;
+            place-items: center;
+            flex: 0 0 28px;
+            color: #93c5fd;
+            background: #172b49;
+            border: 1px solid #294568;
+            border-radius: 9px;
+        }
+
+        .register-card {
+            padding: 34px;
+            background: rgba(17, 24, 39, 0.94);
+            border: 1px solid #29364b;
+            border-radius: 20px;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.28);
+        }
+
+        .register-card h2 {
+            margin: 0 0 8px;
+            color: #f8fafc;
+            font-size: 26px;
+            letter-spacing: -0.7px;
+        }
+
+        .register-card-description {
+            margin: 0 0 25px;
+            color: #94a3b8;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .register-form {
+            display: flex;
+            flex-direction: column;
+            gap: 17px;
+        }
+
+        .register-field label {
+            display: block;
+            margin-bottom: 7px;
+            color: #cbd5e1;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .register-field input {
+            width: 100%;
+            min-height: 48px;
+            padding: 12px 14px;
+            background: #0b1220;
+            color: #f1f5f9;
+            border: 1px solid #334155;
+            border-radius: 9px;
+            outline: none;
+            font-size: 14px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .register-field input:focus {
+            border-color: #60a5fa;
+            box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.13);
+        }
+
+        .register-field input::placeholder {
+            color: #64748b;
+        }
+
+        .register-submit {
+            width: 100%;
+            min-height: 49px;
+            margin-top: 5px;
+            color: white;
+            background: #3b82f6;
+            border: 0;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .register-submit:hover {
+            background: #2563eb;
+        }
+
+        .register-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .register-signin {
+            margin: 22px 0 0;
+            color: #94a3b8;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        .register-signin a {
+            color: #93c5fd;
+            font-weight: 700;
+        }
+
+        .register-signin a:hover {
+            color: #bfdbfe;
+        }
+
+        .register-footer {
+            margin-top: 24px;
+            color: #64748b;
+            text-align: center;
+            font-size: 11px;
+            line-height: 1.7;
+        }
+
+        #noCognitoMessage {
+            margin: 20px auto;
+            max-width: 600px;
+        }
+
+        @media (max-width: 850px) {
+            .register-layout {
+                max-width: 520px;
+                grid-template-columns: 1fr;
+                gap: 25px;
+                padding-top: 24px;
+            }
+
+            .register-intro {
+                text-align: center;
+            }
+
+            .register-intro > p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .register-benefits {
+                display: none;
+            }
+
+            .register-intro h1 {
+                font-size: 42px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .register-nav {
+                width: calc(100% - 28px);
+                min-height: 68px;
+            }
+
+            .register-brand {
+                font-size: 16px;
+            }
+
+            .register-brand img {
+                width: 32px;
+                height: 32px;
+            }
+
+            .register-card {
+                padding: 25px 20px;
+            }
+
+            .register-intro h1 {
+                font-size: 36px;
+                letter-spacing: -1.2px;
+            }
+
+            .register-layout {
+                width: calc(100% - 28px);
+            }
+        }
+    </style>
+</head>
+
+<body class="register-page">
+
+    <div id="noCognitoMessage" class="configMessage" style="display: none;">
+        <div class="backdrop"></div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Cognito Not Configured</h3>
+            </div>
+            <div class="panel-body">
+                Check your Cognito settings in
+                <a href="/js/config.js">js/config.js</a>.
             </div>
         </div>
+    </div>
 
-        <header>
-          <img src="images/logo.png">
-        </header>
+    <nav class="register-nav" aria-label="Main navigation">
+        <a href="/index.html" class="register-brand">
+            <img src="/images/logo.png" alt="">
+            <span>WILD RYDES</span>
+        </a>
 
-        <section class="form-wrap">
-            <h1>Register</h1>
-            <form id="registrationForm">
-              <input type="email" id="emailInputRegister" placeholder="Email" pattern=".*" required>
-              <input type="password" id="passwordInputRegister" placeholder="Password" pattern=".*" required>
-              <input type="password" id="password2InputRegister" placeholder="Confirm Password" pattern=".*" required>
+        <a href="/index.html" class="register-home">
+            &larr; Back to Home
+        </a>
+    </nav>
 
-              <input type="submit" value="Let's Ryde">
-            </form>
+    <main class="register-layout">
+
+        <section class="register-intro">
+            <div class="register-eyebrow">
+                Your adventure begins here
+            </div>
+
+            <h1>Make room for<br><span>something magical.</span></h1>
+
+            <p>
+                Create your Wild Rydes account and get ready to
+                experience a different kind of ride.
+            </p>
+
+            <div class="register-benefits">
+                <div class="register-benefit">
+                    <span class="benefit-check">&#10003;</span>
+                    A simple and secure sign-up process
+                </div>
+
+                <div class="register-benefit">
+                    <span class="benefit-check">&#10003;</span>
+                    Verify your email to activate your account
+                </div>
+
+                <div class="register-benefit">
+                    <span class="benefit-check">&#10003;</span>
+                    Access your ride-request experience
+                </div>
+            </div>
         </section>
 
-        <script src="js/vendor/jquery-3.1.0.js"></script>
-        <script src="js/vendor/bootstrap.min.js"></script>
-        <script src="js/vendor/aws-cognito-sdk.min.js"></script>
-        <script src="js/vendor/amazon-cognito-identity.min.js"></script>
-        <script src="js/config.js"></script>
-        <script src="js/cognito-auth.js"></script>
-    </body>
+        <section class="register-card">
+            <h2>Create your account</h2>
+
+            <p class="register-card-description">
+                Enter your details below to get started.
+            </p>
+
+            <form id="registrationForm" class="register-form">
+                <div class="register-field">
+                    <label for="emailInputRegister">Email address</label>
+                    <input
+                        type="email"
+                        id="emailInputRegister"
+                        placeholder="you@example.com"
+                        autocomplete="email"
+                        required
+                    >
+                </div>
+
+                <div class="register-field">
+                    <label for="passwordInputRegister">Password</label>
+                    <input
+                        type="password"
+                        id="passwordInputRegister"
+                        placeholder="Enter a password"
+                        autocomplete="new-password"
+                        required
+                    >
+                </div>
+
+                <div class="register-field">
+                    <label for="password2InputRegister">Confirm password</label>
+                    <input
+                        type="password"
+                        id="password2InputRegister"
+                        placeholder="Enter your password again"
+                        autocomplete="new-password"
+                        required
+                    >
+                </div>
+
+                <input
+                    type="submit"
+                    class="register-submit"
+                    value="Create Account"
+                >
+            </form>
+
+            <p class="register-signin">
+                Already have an account?
+                <a href="/signin.html">Sign in</a>
+            </p>
+
+            <p class="register-footer">
+                By creating an account, you agree to use Wild Rydes
+                responsibly. Email verification may be required.
+            </p>
+        </section>
+
+    </main>
+
+    <script src="/js/vendor/jquery-3.1.0.js"></script>
+    <script src="/js/vendor/bootstrap.min.js"></script>
+    <script src="/js/vendor/aws-cognito-sdk.min.js"></script>
+    <script src="/js/vendor/amazon-cognito-identity.min.js"></script>
+    <script src="/js/config.js"></script>
+    <script src="/js/cognito-auth.js"></script>
+
+</body>
 </html>
