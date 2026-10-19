@@ -1,210 +1,591 @@
-<!doctype html>
-<html class="no-js" lang="">
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Wild Rydes</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Wild Rydes — your next adventure starts here.">
+    <title>Wild Rydes | Your Next Adventure</title>
 
-  <link rel="stylesheet" href="css/font.css">
-  <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="/css/font.css">
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/message.css">
+    <link rel="stylesheet" href="/css/dark-theme.css">
 
-  <script src="js/vendor/modernizr.js"></script>
+    <style>
+        body.home-page {
+            background:
+                radial-gradient(ellipse at 80% 25%,
+                    rgba(59, 130, 246, .13), transparent 42%),
+                #0b1120;
+        }
+
+        .home-nav {
+            width: min(1160px, calc(100% - 40px));
+            min-height: 82px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .home-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #f8fafc;
+            font-size: 21px;
+            font-weight: 800;
+            letter-spacing: -.6px;
+        }
+
+        .home-brand img {
+            width: 42px;
+            height: 42px;
+            object-fit: contain;
+        }
+
+        .home-nav-links {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .home-nav-links a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 42px;
+            padding: 10px 17px;
+            border: 1px solid transparent;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 650;
+        }
+
+        .home-nav-links .nav-signin {
+            color: #e2e8f0;
+            border-color: #334155;
+        }
+
+        .home-nav-links .nav-register {
+            color: white;
+            background: #3b82f6;
+        }
+
+        .home-nav-links .nav-register:hover {
+            background: #2563eb;
+        }
+
+        .home-hero {
+            width: min(1160px, calc(100% - 40px));
+            min-height: 570px;
+            margin: 0 auto;
+            padding: 78px 0 85px;
+            display: grid;
+            grid-template-columns: 1.05fr .95fr;
+            align-items: center;
+            gap: 52px;
+        }
+
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 8px 12px;
+            margin-bottom: 24px;
+            color: #bfdbfe;
+            background: rgba(59, 130, 246, .1);
+            border: 1px solid rgba(96, 165, 250, .25);
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .hero-eyebrow span {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #60a5fa;
+        }
+
+        .home-hero h1 {
+            margin: 0 0 22px;
+            color: #f8fafc;
+            font-size: clamp(42px, 5.5vw, 70px);
+            line-height: 1.08;
+            letter-spacing: -3px;
+            font-weight: 800;
+        }
+
+        .home-hero h1 em {
+            color: #60a5fa;
+            font-style: normal;
+        }
+
+        .hero-description {
+            max-width: 490px;
+            margin: 0 0 30px;
+            color: #a7b4c8;
+            font-size: 17px;
+            line-height: 1.85;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .hero-actions a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 50px;
+            padding: 0 23px;
+            border: 1px solid transparent;
+            border-radius: 11px;
+            font-size: 14px;
+            font-weight: 700;
+            transition: .2s ease;
+        }
+
+        .hero-primary {
+            color: white;
+            background: #3b82f6;
+            box-shadow: 0 8px 28px rgba(59, 130, 246, .2);
+        }
+
+        .hero-primary:hover {
+            color: white;
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        .hero-secondary {
+            color: #e2e8f0;
+            background: rgba(15, 23, 42, .55);
+            border-color: #334155 !important;
+        }
+
+        .hero-secondary:hover {
+            color: white;
+            border-color: #60a5fa !important;
+        }
+
+        .hero-note {
+            margin-top: 24px;
+            color: #7f8da3;
+            font-size: 13px;
+        }
+
+        .hero-visual {
+            position: relative;
+            min-height: 390px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .visual-glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: rgba(59, 130, 246, .15);
+            filter: blur(55px);
+        }
+
+        .visual-card {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 450px;
+            padding: 25px;
+            overflow: hidden;
+            background: linear-gradient(145deg,
+                rgba(30, 41, 59, .95),
+                rgba(15, 23, 42, .96));
+            border: 1px solid #334155;
+            border-radius: 24px;
+            box-shadow: 0 28px 70px rgba(0, 0, 0, .3);
+        }
+
+        .visual-card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .visual-label {
+            color: #94a3b8;
+            font-size: 12px;
+        }
+
+        .visual-status {
+            padding: 6px 10px;
+            color: #86efac;
+            background: rgba(34, 197, 94, .1);
+            border: 1px solid rgba(34, 197, 94, .2);
+            border-radius: 999px;
+            font-size: 11px;
+        }
+
+        .visual-map {
+            position: relative;
+            height: 210px;
+            overflow: hidden;
+            background:
+                radial-gradient(ellipse at 30% 40%,
+                    rgba(59, 130, 246, .2), transparent 45%),
+                #101b2e;
+            border: 1px solid #293b55;
+            border-radius: 16px;
+        }
+
+        .map-road {
+            position: absolute;
+            height: 3px;
+            background: #334b69;
+            border-radius: 10px;
+            transform-origin: left center;
+        }
+
+        .road-one {
+            width: 120%;
+            top: 34%;
+            left: -10%;
+            transform: rotate(25deg);
+        }
+
+        .road-two {
+            width: 115%;
+            top: 78%;
+            left: -4%;
+            transform: rotate(-32deg);
+        }
+
+        .road-three {
+            width: 80%;
+            top: 8%;
+            left: 45%;
+            transform: rotate(70deg);
+        }
+
+        .map-route {
+            position: absolute;
+            width: 55%;
+            height: 42%;
+            left: 24%;
+            top: 28%;
+            border-top: 3px dashed #60a5fa;
+            border-right: 3px dashed #60a5fa;
+            border-radius: 0 20px 0 0;
+            transform: rotate(-5deg);
+        }
+
+        .map-pin {
+            position: absolute;
+            z-index: 2;
+            width: 14px;
+            height: 14px;
+            background: #60a5fa;
+            border: 4px solid #dbeafe;
+            border-radius: 50%;
+            box-shadow: 0 0 0 7px rgba(96, 165, 250, .15);
+        }
+
+        .pin-start {
+            left: 23%;
+            top: 63%;
+        }
+
+        .pin-end {
+            right: 20%;
+            top: 23%;
+            background: #a78bfa;
+            border-color: #ede9fe;
+            box-shadow: 0 0 0 7px rgba(167, 139, 250, .15);
+        }
+
+        .visual-card-bottom {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding-top: 22px;
+        }
+
+        .unicorn-icon {
+            width: 48px;
+            height: 48px;
+            flex: 0 0 48px;
+            display: grid;
+            place-items: center;
+            color: #bfdbfe;
+            background: #1e3a5f;
+            border: 1px solid #365779;
+            border-radius: 14px;
+            font-size: 23px;
+        }
+
+        .ride-title {
+            margin-bottom: 4px;
+            color: #f1f5f9;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .ride-subtitle {
+            color: #94a3b8;
+            font-size: 12px;
+        }
+
+        .home-features {
+            width: min(1160px, calc(100% - 40px));
+            margin: 0 auto;
+            padding: 0 0 65px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .feature-card {
+            padding: 24px;
+            background: rgba(17, 24, 39, .75);
+            border: 1px solid #29364b;
+            border-radius: 16px;
+        }
+
+        .feature-icon {
+            display: grid;
+            place-items: center;
+            width: 42px;
+            height: 42px;
+            margin-bottom: 18px;
+            color: #93c5fd;
+            background: #172b49;
+            border-radius: 12px;
+            font-size: 19px;
+        }
+
+        .feature-card h2 {
+            margin: 0 0 9px;
+            font-size: 16px;
+            letter-spacing: -.3px;
+        }
+
+        .feature-card p {
+            margin: 0;
+            color: #94a3b8;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .home-footer {
+            padding: 25px 20px;
+            color: #64748b;
+            border-top: 1px solid #1e293b;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        @media (max-width: 850px) {
+            .home-hero {
+                grid-template-columns: 1fr;
+                gap: 35px;
+                padding-top: 60px;
+            }
+
+            .home-hero h1 {
+                letter-spacing: -2px;
+            }
+
+            .hero-visual {
+                min-height: 320px;
+            }
+
+            .home-features {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .home-nav {
+                width: calc(100% - 28px);
+                min-height: 72px;
+                gap: 10px;
+            }
+
+            .home-brand {
+                font-size: 17px;
+                gap: 7px;
+            }
+
+            .home-brand img {
+                width: 32px;
+                height: 32px;
+            }
+
+            .home-nav-links {
+                gap: 6px;
+            }
+
+            .home-nav-links a {
+                padding: 9px 10px;
+                font-size: 12px;
+            }
+
+            .home-hero {
+                width: calc(100% - 32px);
+                padding: 50px 0;
+            }
+
+            .home-hero h1 {
+                font-size: 43px;
+            }
+
+            .hero-description {
+                font-size: 15px;
+            }
+
+            .hero-actions a {
+                flex: 1;
+                padding: 0 14px;
+            }
+
+            .visual-card {
+                padding: 17px;
+            }
+
+            .home-features {
+                width: calc(100% - 32px);
+            }
+        }
+    </style>
 </head>
-<body class="page-home">
 
-  <header class="site-header">
-    <h1 class="title">Wild Rydes</h1>
-    <nav class="site-nav">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="unicorns.html">Meet the Unicorns</a></li>
-        <li><a href="investors.html">Investors &amp; Board of Directors</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-        <li><a href="apply.html">Apply</a></li>
-      </ul>
+<body class="home-page">
+
+    <nav class="home-nav" aria-label="Main navigation">
+        <a class="home-brand" href="/">
+            <img src="/images/logo.png" alt="">
+            <span>WILD RYDES</span>
+        </a>
+
+        <div class="home-nav-links">
+            <a class="nav-signin" href="/signin.html">Sign In</a>
+            <a class="nav-register" href="/register.html">Get Started</a>
+        </div>
     </nav>
-    <button type="button" class="btn-menu"><span>Menu</span></button>
-    <a class="home-button" href="/register.html">Giddy Up!</a>
-  </header>
 
-  
-<div class="auth-buttons">
-    <a href="/signin.html" class="auth-btn signin-btn">
-        Sign In
-    </a>
+    <main>
+        <section class="home-hero">
+            <div class="hero-content">
+                <div class="hero-eyebrow">
+                    <span></span>
+                    A different kind of ride
+                </div>
 
-    <a href="/register.html" class="auth-btn register-btn">
-        Register
-    </a>
-</div>
+                <h1>Your next ride.<br>
+                    <em>Beyond ordinary.</em>
+                </h1>
 
-<style>
-.auth-buttons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 14px;
-    flex-wrap: wrap;
-    margin: 24px auto;
-}
+                <p class="hero-description">
+                    Leave the ordinary behind. Discover a new way to
+                    travel with Wild Rydes — where every journey starts
+                    with a little adventure.
+                </p>
 
-.auth-btn {
-    display: inline-block;
-    padding: 12px 28px;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 600;
-    text-decoration: none;
-    cursor: pointer;
-    transition: opacity 0.2s ease;
-}
+                <div class="hero-actions">
+                    <a class="hero-primary" href="/register.html">
+                        Get Started &rarr;
+                    </a>
+                    <a class="hero-secondary" href="/signin.html">
+                        Sign In
+                    </a>
+                </div>
 
-.auth-btn:hover {
-    opacity: 0.85;
-}
+                <p class="hero-note">
+                    Sign in or create an account to request your ride.
+                </p>
+            </div>
 
-.signin-btn {
-    background: #ffffff;
-    color: #243b53;
-    border: 2px solid #243b53;
-}
+            <div class="hero-visual" aria-label="Illustration of a ride route">
+                <div class="visual-glow"></div>
 
-.register-btn {
-    background: #243b53;
-    color: #ffffff;
-    border: 2px solid #243b53;
-}
-</style>
+                <div class="visual-card">
+                    <div class="visual-card-top">
+                        <div>
+                            <div class="visual-label">YOUR NEXT ADVENTURE</div>
+                            <div class="ride-title">Ride overview</div>
+                        </div>
+                        <div class="visual-status">Ready to explore</div>
+                    </div>
 
+                    <div class="visual-map" aria-hidden="true">
+                        <div class="map-road road-one"></div>
+                        <div class="map-road road-two"></div>
+                        <div class="map-road road-three"></div>
+                        <div class="map-route"></div>
+                        <div class="map-pin pin-start"></div>
+                        <div class="map-pin pin-end"></div>
+                    </div>
 
-  <section class="home-about">
-    <div class="row column large-9 xlarge-6 xxlarge-4">
-      <h2 class="section-title">How Does This  thing Work?</h2>
-      <p class="content">
-        In today’s fast paced world, you’ve got places you need to be but not enough time in your jam packed schedule. Wouldn’t it be nice if there were a transportation service that changed the way you get around daily? Introducing Wild Rydes, an innovative transportation service that helps people get to their destination faster and hassle-free. Getting started is as easy as tapping a button in our app.
-      </p>
-    </div>
+                    <div class="visual-card-bottom">
+                        <div class="unicorn-icon" aria-hidden="true">
+                            &#10024;
+                        </div>
+                        <div>
+                            <div class="ride-title">Your ride awaits</div>
+                            <div class="ride-subtitle">
+                                Choose your pickup point to begin.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <div class="row medium-up-2 large-up-4">
-      <div class="column">
-        <div class="home-about-block">
-          <h3 class="title icon-download">Download The App</h3>
-          <p class="content">Head over to the app store and download the Wild Rydes app. You’re just a few taps away from getting your ryde.</p>
-        </div>
-      </div>
+        <section class="home-features" aria-label="Wild Rydes features">
+            <article class="feature-card">
+                <div class="feature-icon" aria-hidden="true">&#10132;</div>
+                <h2>A new way to travel</h2>
+                <p>
+                    Choose your pickup location and start your journey
+                    with a simple ride request.
+                </p>
+            </article>
 
-      <div class="column">
-        <div class="home-about-block">
-          <h3 class="title icon-unicorn">Request A Unicorn</h3>
-          <p class="content">We can get you there. Simply request a ryde on the app and we'll connect you with a unicorn immediately.</p>
-        </div>
-      </div>
+            <article class="feature-card">
+                <div class="feature-icon" aria-hidden="true">&#10022;</div>
+                <h2>Every ride is an adventure</h2>
+                <p>
+                    Meet your unicorn and enjoy a ride experience
+                    beyond the ordinary.
+                </p>
+            </article>
 
-      <div class="column">
-        <div class="home-about-block">
-          <h3 class="title icon-price">Pick A Price</h3>
-          <p class="content">Pick the valuation you're willing to pay and your ryde is set up. The only surge is the acceleration you get when taking off.</p>
-        </div>
-      </div>
+            <article class="feature-card">
+                <div class="feature-icon" aria-hidden="true">&#128274;</div>
+                <h2>Your account, your rides</h2>
+                <p>
+                    Sign in securely to access the ride-request
+                    experience.
+                </p>
+            </article>
+        </section>
+    </main>
 
-      <div class="column">
-        <div class="home-about-block">
-          <h3 class="title icon-success">Ride Off To Success!</h3>
-          <p class="content">After matching with your unicorn and agreeing to its terms, you’ll be all set. Your unicorn will arrive shortly to pick you up.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+    <footer class="home-footer">
+        &copy; 2026 Wild Rydes. Your next adventure starts here.
+    </footer>
 
-  <section class="home-story">
-    <div class="row column large-9 xlarge-6 xxlarge-4">
-      <h2 class="section-title">Our Story</h2>
-      <p class="content">
-        Wild Rydes was started by a former hedge fund analyst and a software developer. The two long-time friends happened upon the Wild Rydes idea after attending a silent yoga retreat in Nevada. After gazing upon the majestic herds of unicorns prancing across a surreal Nevada sunset, they witnessed firsthand the poverty and unemployment endemic to that once proud race. Whether it was modern society’s reliance on science over magic or not, we’ll never know the cause of their Ozymandian downfall and fade to obscurity. Moved by empathy, romance, and free enterprise, they saw an opportunity to marry society’s demand for faster, more flexible transportation to underutilized beasts of labor through an on-demand market making transportation app. Using the founders’ respective expertise in animal husbandry and software engineering, Wild Rydes was formed and has since raised untold amounts of venture capital. Today, Wild Rydes has thousands of unicorns in its network fulfilling hundreds of rydes each day.
-      </p>
-    </div>
-  </section>
-
-  <section class="home-sign-up">
-    <div class="row column">
-      <img class="icon-w" src="images/wr-home-W.png">
-
-      <form onsubmit="javascript:void(0);">
-        <input type="email" placeholder="Enter your email address">
-        <button type="button">Submit</button>
-      </form>
-
-      <h2 class="section-title">Sign Up</h2>
-
-      <p class="content">Wild Rydes is coming soon! Enter your email to enter the limited private beta</p>
-
-      <div class="apps">
-        <a class="app-icon" href=""><img src="images/wr-home-apple.png"></a>
-        <a class="app-icon" href=""><img src="images/wr-home-google.png"></a>
-        <a class="app-icon" href=""><img src="images/wr-home-blackberry.png"></a>
-        <a class="app-icon" href=""><img src="images/wr-home-Xiaomi.png"></a>
-      </div>
-
-      <div class="social">
-        <a class="icon-fb" href="">Facebook</a>
-        <a class="icon-tw" href="">Twitter</a>
-        <a class="icon-ig" href="">Instagram</a>
-        <a class="icon-wc" href="">Wechat</a>
-        <a class="icon-wb" href="">Weibo</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="home-quote">
-    <div class="row column medium-8 xxlarge-6">
-      <div class="quote-wrap">
-        <div class="quote">
-          “I was almost late to my ultimate frisbee tournament in DOLORES park. BUt Wild Rydes Got me there from the marina in under five minutes.”
-        </div>
-        <div class="quoter">- Satisfied Wild Rydes User</div>
-      </div>
-    </div>
-  </section>
-
-  <section class="kraken-callout">
-    <div class="row">
-      <div class="columns medium-6 xxlarge-4 xxlarge-offset-2">
-        <img src="images/wr-home-kraken.png">
-      </div>
-
-      <div class="columns medium-6 xlarge-5 xxlarge-4">
-        <h4 class="title">Coming Soon</h4>
-        <p class="content">
-          Kraken 3xplorer and Dragon Flyght. We’re looking to provide you a full service package from air, land, and to sea.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <footer class="site-footer">
-    <div class="row column">
-      <nav class="footer-nav">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="unicorns.html">Meet the Unicorns</a></li>
-          <li><a href="investors.html">Investors & Board of Directors</a></li>
-          <li><a href="faq.html">FAQ</a></li>
-          <li><a href="apply.html">Apply</a></li>
-        </ul>
-      </nav>
-    </div>
-
-    <div class="row column">
-      <div class="footer-legal">
-        &copy;WildRydes Inc<br>
-        All Rights Reserved
-      </div>
-    </div>
-  </footer>
-
-  <script src="js/vendor.js"></script>
-
-  <script src="js/main.js"></script>
 </body>
 </html>
