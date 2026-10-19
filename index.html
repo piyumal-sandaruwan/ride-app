@@ -28,6 +28,56 @@
     <a class="home-button" href="/register.html">Giddy Up!</a>
   </header>
 
+  
+<div class="auth-buttons">
+    <a href="/signin.html" class="auth-btn signin-btn">
+        Sign In
+    </a>
+
+    <a href="/register.html" class="auth-btn register-btn">
+        Register
+    </a>
+</div>
+
+<style>
+.auth-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin: 24px auto;
+}
+
+.auth-btn {
+    display: inline-block;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.auth-btn:hover {
+    opacity: 0.85;
+}
+
+.signin-btn {
+    background: #ffffff;
+    color: #243b53;
+    border: 2px solid #243b53;
+}
+
+.register-btn {
+    background: #243b53;
+    color: #ffffff;
+    border: 2px solid #243b53;
+}
+</style>
+
+
   <section class="home-about">
     <div class="row column large-9 xlarge-6 xxlarge-4">
       <h2 class="section-title">How Does This  thing Work?</h2>
